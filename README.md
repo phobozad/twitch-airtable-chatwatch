@@ -3,17 +3,17 @@
 ## Overview
 This app will login to a specific Twitch.tv channel and watch for users entering the `!play` command in chat.
 
-Each user that enters this command will be added to an AirTable that can be used to provide auto-completion of Twitch usernames that 
+Each user that enters this command will be added to an AirTable that can be used to provide auto-completion of Twitch usernames.
 
 ## Installation
 ### Windows
-**Download & double-click to run the pre-compiled version that comes with NodeJS bundled in or run from source:**
+**Download & double-click to run the pre-compiled version that comes with NodeJS bundled in or run from source using below steps:**
 
 1.	Install NodeJS 14+ from https://nodejs.org/en/ (LTS release reccomended).
 	* The "Tools for Native Modules" isn't required to use this app, so this can be left unchecked during installation.
 2.	Download the app using a git pull or by downloading a ZIP file of the repo from github and extracting to a folder.
 3.	Run the "Node.js command prompt" shortcut that is now in the start menu
-	* This just runs C:\Program Files\nodejs\nodevars.bat assuming default install location was selected for NodeJS
+	* This just runs `C:\Program Files\nodejs\nodevars.bat` assuming default install location was selected for NodeJS
 4.	Navigate in the command prompt to the folder that holds this app
 	```
 	cd "c:\users\username\downloads\twitch-airtable-chatwatch"
