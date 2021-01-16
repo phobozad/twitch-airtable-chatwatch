@@ -1,0 +1,38 @@
+;  Twitch Chat Settings
+; 
+; "channel" is the twitch channel the bot will join to listen for messages
+; 
+; Should use a dedicated bot account for this to lower risk in case of credentials/API keys become compromised.
+; 
+; For password, need to use oauth and not real password.
+; For really quick & dirty setup go to https://twitchapps.com/tmi/ while logged in with the bot twitch account.
+; After authorizing, you will end up with a string that looks like "oauth:34adf8adf3adf81341234" - use this for the password setting including the "oauth:" part
+
+[twitch]
+username = marblesbot
+password = oauth:42adf3k1341klkmkm134
+channel = nightattack
+
+
+; AirTable Settings
+
+; 
+; Go to https://airtable.com/account to generate an API key.
+; This provides access to update the airtables in your account.
+; Enter this for "apiKey"
+
+; 
+; Every AirTable has a Base ID to uniquely identify it
+; To get this ID, go to https://airtable.com/api and click on the base you want to use.
+; On the "Introduction" tab (first tab that shows up), you will see "The ID of this base is" followed by the ID in green text.
+; Enter this for "baseID"
+
+; "tableName" - AirTable Table to insert records into
+; "fieldName" - This field in the above table will be populated with the player's twitch Display Name (username)
+
+[airtable]
+apiKey = keyDKkn3md78aQ
+baseID = applk132m1nd7ak
+tableName = ViewersAutoComplete
+fieldName = PlayerName
+

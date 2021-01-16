@@ -1,0 +1,24 @@
+{
+	"name": "twitch-airtable-chatwatch",
+	"version": "0.0.1",
+	"license": "Zlib",
+	"main": "bot.js",
+	"bin": {
+		"main": "bot.js"
+	},
+	"dependencies": {
+		"axios": "^0.21.1",
+		"chalk": "^4.1.0",
+		"ini": "^2.0.0",
+		"tmi.js": "^1.7.1"
+	},
+	"engines": {
+		"node": ">=0.14.0"
+	},
+	"scripts": {
+		"buildwin": "rmdir /S /Q build & pkg . -t node14-win-x64 --out-path build",
+		"postbuildwin": "copy settings.ini.example build\\settings.ini /Y",
+		"prepackagewin": "rename \"build\\twitch-airtable-chatwatch.exe\" \"twitch-airtable-chatwatch-%npm_package_version%.exe\"",
+		"packagewin": "powershell Compress-Archive 'build\\*' 'build\\twitch-airtable-chatwatch-%npm_package_version%-win64.zip'"
+	}
+}
