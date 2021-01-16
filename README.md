@@ -5,6 +5,8 @@ This app will login to a specific Twitch.tv channel and watch for users entering
 
 Each user that enters this command will be added to an AirTable that can be used to provide auto-completion of Twitch usernames.
 
+Data will be batched up and pushed into AirTable on a configurable interval (default: 5 seconds).  If there is more than one player that entered `!play` during the interval, the data will be inserted as a single row with multiple comma-separated usernames.
+
 ## Installation
 ### Windows
 **Download & double-click to run the pre-compiled version that comes with NodeJS bundled in or run from source using below steps:**
