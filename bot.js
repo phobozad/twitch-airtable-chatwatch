@@ -1,13 +1,13 @@
 // TMI is the Twitch Chat API
 const tmi = require('tmi.js');
-// Axios is an HTTP library
-const axios = require('axios');
 // fs and ini for config file parsing
 var fs = require('fs'), ini = require('ini');
 // Chalk for colored text output
 const chalk = require('chalk');
 // Path for finding the config file when compiled as an exe
 const path = require('path');
+// Airtable Library
+var Airtable = require('airtable');
 
 
 // For pkg binary building
@@ -20,18 +20,10 @@ if(isPkg)
 	var configFile = path.join(path.dirname(process.execPath), 'settings.ini');
 else
 	var configFile = './settings.ini';
-
 var config = ini.parse(fs.readFileSync(configFile, 'utf-8'))
 
-// Build API Endpoint URL
-const airtableURL = `https://api.airtable.com/v0/${config.airtable.baseID}/${config.airtable.tableName}`
-
-// Setup axios library for AirTable API calls
-const airTableAPI = axios.create({
-	baseURL: airtableURL,
-});
-// Set the authorization header for all requests to use API Key
-airTableAPI.defaults.headers.common['Authorization'] = `Bearer ${config.airtable.apiKey}`;
+// Airtable
+var airtableDB = new Airtable({apiKey: config.airtable.apiKey}).base(config.airtable.baseID);
 
 // Setup twitch settings
 const twitchChatSettings = {
@@ -44,6 +36,8 @@ const twitchChatSettings = {
 	]
 };
 
+
+console.log('App starting...use Ctrl+C to quit')
 
 // Create a Twitch Chat client with our options
 const chatClient = new tmi.client(twitchChatSettings);
@@ -79,16 +73,19 @@ function onMessageHandler (target, context, msg, self) {
 function addPlayer (player) {
 	console.log(`Adding Player ${chalk.bold(player)}`);
 
-	airTableAPI
-		.post('', {fields: {[config.airtable.fieldName]: player}})
-		.then(res => {
-			// Executes when API HTTP status code is "good"
-			console.log(`Successfully added ${chalk.bold(res.data.fields.PlayerName)} to AirTable.`)
-		})
-		.catch(error => {
-			// Executes when there is an error including API HTTP status code issues (4xx, 5xx, etc)
-			console.error(chalk.red(`AirTable API Error - Response Code: ${error.response.status} | ${error.response.data.error.type}: ${error.response.data.error.message}`))
-		})
+	airtableDB(config.airtable.tableName).create([{"fields": {[config.airtable.fieldName]: player}}], function(err, records) {
+		if (err) {
+			// Error
+			console.error(chalk.red(`AirTable API Error - ${err}`));
+			return;
+		}
+
+		// Success
+		records.forEach(function (record) {
+			console.log(`Added ${chalk.bold(record.fields[config.airtable.fieldName])} to AirTable.`);
+		});
+		console.log(`Successfully added ${records.length} players to AirTable.`)
+	});
 
 	return;
 }

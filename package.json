@@ -7,7 +7,7 @@
 		"main": "bot.js"
 	},
 	"dependencies": {
-		"axios": "^0.21.1",
+		"airtable": "^0.10.1",
 		"chalk": "^4.1.0",
 		"ini": "^2.0.0",
 		"tmi.js": "^1.7.1"
