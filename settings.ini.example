@@ -29,10 +29,12 @@ channel = nightattack
 
 ; "tableName" - AirTable Table to insert records into
 ; "fieldName" - This field in the above table will be populated with the player's twitch Display Name (username)
+; "updateIntervalMs" - How often (in milliseconds) the player list is batched up and pushed into AirTables (e.g. 5000 = 5 seconds). For API rate-limiting.
 
 [airtable]
 apiKey = keyDKkn3md78aQ
 baseID = applk132m1nd7ak
 tableName = ViewersAutoComplete
 fieldName = PlayerName
+updateIntervalMs = 5000
 
