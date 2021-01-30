@@ -74,7 +74,7 @@ function onMessageHandler (target, context, msg, self) {
 	//console.log(`Context: ${JSON.stringify(context)}`)
 
 	// If the command is known, let's execute it
-	if (commandName.includes('!play')) {
+	if (commandName.toLowerCase().includes('!play')) {
 		
 		//chatClient.say(target, `You rolled a ${num}`);     
 		addPlayer(context['display-name']);
