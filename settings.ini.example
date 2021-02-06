@@ -38,3 +38,9 @@ tableName = ViewersAutoComplete
 fieldName = PlayerName
 updateIntervalMs = 5000
 
+[marbles]
+; "playEmotes" - these are emotes that work just like !play to join a race.  These change over time, so this should be kept up-to-date
+; some regular marbles players use these to join games even on other channels rather than using !play, so we need to catch them as well
+; https://discord.com/channels/393873383227392001/501163493429346325/780671580006121493
+; https://discord.com/channels/393873383227392001/612253606275579904
+playEmotes = pbpsSkylar, pbpsMarble, pbpsPlayT1, pbpsPlayT2, pbpsPlayT3,mospacPlay,enderz2Love,enderz2Sith,spoooGasm,spoooA,standa3Play,standa3Kappa,standa3Mask,headsn1Lit,headsn1Hornsup,ltdigiLove2,ltdigiOkay,sleepy24Sip,kibbleL,dnp3Wolfpack,vibbleLove,audeovLuvU

@@ -1,6 +1,6 @@
 {
 	"name": "twitch-airtable-chatwatch",
-	"version": "0.0.3",
+	"version": "0.1.0",
 	"license": "Zlib",
 	"main": "bot.js",
 	"bin": {

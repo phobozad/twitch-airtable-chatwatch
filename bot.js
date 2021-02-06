@@ -39,11 +39,17 @@ const twitchChatSettings = {
 	]
 };
 
+// Build array of emote commands to recogize
+// Map funtion trims spaces off each item. filter function removes any empty strings that may have gotten in
+var validEmotes = config.marbles.playEmotes.split(',').map(item=>item.trim()).filter(Boolean)
 
 console.log('App starting...use Ctrl+C to quit');
 console.log(`AirTable update interval is ${config.airtable.updateIntervalMs} milliseconds`);
 console.log(`Twitch Channel is ${config.twitch.channel}`);
 console.log(`Bot Username is ${config.twitch.username}`)
+
+console.log(`Emote play commands recognized (in addition to !play):`)
+validEmotes.forEach(emote => console.log(chalk.yellow(emote)))
 
 // We will buffer players in an array and only push this to Airtables every 5 seconds
 var batchedPlayers = [];
@@ -77,6 +83,10 @@ function onMessageHandler (target, context, msg, self) {
 	if (commandName.toLowerCase().includes('!play')) {
 		
 		//chatClient.say(target, `You rolled a ${num}`);     
+		addPlayer(context['display-name']);
+	}
+	// In addition to !play, check for any valid emote command that also joins
+	else if(validEmotes.some(emote=>commandName.includes(emote))){
 		addPlayer(context['display-name']);
 	}
 }
